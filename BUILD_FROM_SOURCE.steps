@@ -1,0 +1,28 @@
+
+Steps to build Conky GUI from source:
+
+    Get the latest source code version:
+        svn co https://conkygui.svn.sourceforge.net/svnroot/conkygui/trunk conkygui
+
+    Install the required libraries:
+		sudo apt-get install scala ant sun-java6-jdk lintian libjava-gnome-java
+	
+    Install JUnit	
+        wget http://github.com/downloads/KentBeck/junit/junit-4.8.2.jar
+		mv junit-4.8.2.jar /usr/share/java/
+		cd /usr/share/java/
+		sudo ln -s junit-4.8.2.jar junit4.jar
+		
+    Set environment variables (SCALA_HOME, JUNIT_HOME)
+        Just edit the properties scala.home and junit.home in 
+        the file nbproject/project.properties
+			
+	cd /usr/share/java
+	sudo ln -s . lib
+
+	Within the 'conkygui' folder:
+		ant compile
+		ant test
+		ant run
+		ant package
+

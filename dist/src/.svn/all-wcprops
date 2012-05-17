@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svnroot/conkygui/!svn/ver/147/trunk/dist/src
+END
+INSTALL
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svnroot/conkygui/!svn/ver/134/trunk/dist/src/INSTALL
+END
+conkygui
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svnroot/conkygui/!svn/ver/147/trunk/dist/src/conkygui
+END
+conkygui.png
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svnroot/conkygui/!svn/ver/126/trunk/dist/src/conkygui.png
+END
+conkygui.desktop
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svnroot/conkygui/!svn/ver/134/trunk/dist/src/conkygui.desktop
+END
+conkygui-remove
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svnroot/conkygui/!svn/ver/134/trunk/dist/src/conkygui-remove
+END

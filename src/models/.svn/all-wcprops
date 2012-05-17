@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svnroot/conkygui/!svn/ver/154/trunk/src/models
+END
+ConkyColor.scala
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svnroot/conkygui/!svn/ver/145/trunk/src/models/ConkyColor.scala
+END
+FontAttributeSet.scala
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svnroot/conkygui/!svn/ver/145/trunk/src/models/FontAttributeSet.scala
+END
+ConkyGUI.scala
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svnroot/conkygui/!svn/ver/140/trunk/src/models/ConkyGUI.scala
+END
+ConkyVariable.scala
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svnroot/conkygui/!svn/ver/148/trunk/src/models/ConkyVariable.scala
+END
+CustomColor.scala
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svnroot/conkygui/!svn/ver/145/trunk/src/models/CustomColor.scala
+END
+SystemFont.scala
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svnroot/conkygui/!svn/ver/145/trunk/src/models/SystemFont.scala
+END
+Path.scala
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svnroot/conkygui/!svn/ver/152/trunk/src/models/Path.scala
+END
+UserPreference.scala
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svnroot/conkygui/!svn/ver/154/trunk/src/models/UserPreference.scala
+END
+Time.scala
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svnroot/conkygui/!svn/ver/145/trunk/src/models/Time.scala
+END

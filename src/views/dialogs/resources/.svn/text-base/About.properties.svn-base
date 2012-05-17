@@ -1,0 +1,29 @@
+#  Copyrigh 2010 Gast\u00F3n I. Silva E.
+#  This program is distributed under the terms of the GNU General Public License
+#
+#  This file is part of ConkyGUI.
+#
+#  ConkyGUI is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or
+#  (at your option) any later version.
+#
+#  ConkyGUI is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with Conky GUI.  If not, see <http://www.gnu.org/licenses/>.
+
+title = About: ${Application.title} ${Application.version}
+closeAboutBox.Action.text = &Close
+appDescLabel.text=A graphic editor for Conky files.
+versionLabel.text=Version:
+homepageLabel.text=Web site:
+buttonCredits.text=Credits
+buttonLicense.text=License
+buttonClose.text=Close
+imageLabel.icon=/images/about.png
+construction.icon=/images/Construction.png
+gpl.icon=/images/gplv3.png

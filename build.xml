@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *  Copyrigh 2012 Gastón Silva
+ *  This program is distributed under the terms of the GNU General Public License
+ *
+ *  This file is part of ConkyGUI.
+ *
+ *  ConkyGUI is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  ConkyGUI is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with Conky GUI.  If not, see <http://www.gnu.org/licenses/>.
+ -->
+ 
+<project name="conkygui" default="default" basedir=".">
+
+    <description>Compile, test, package and runs Conky GUI</description>
+ 
+    <!-- Application properties -->
+    <property file="src/controllers/resources/ConkyGUI.properties"/>
+    <!-- Add properties file -->
+    <property file="nbproject/project.properties"/>
+
+    <!-- Import files -->
+    <import file="nbproject/build-impl.xml"/>
+
+    <echo message="ANT_HOME = ${ant.home}" />
+    <echo message="JAVA_HOME = ${java.home}" />
+    <echo message="SCALA_HOME = ${scala.home}" />
+    <echo message="JUNIT_HOME = ${junit.home}" />
+
+    <path id="project.classpath">
+      <pathelement location="${scala.compiler}" />
+      <pathelement location="${scala.lib}" />
+      <pathelement location="${junit.lib}" />
+      <pathelement location="${scala.build.dir}" />
+      <pathelement location="${scala.test.build.dir}" />
+      <pathelement location="${file.reference.vldocking}" />
+      <pathelement location="${file.reference.appframework}" />
+    </path>
+
+    <!-- /usr/share/java/scala-compiler.jar/scala/tools/ant/antlib.xml -->
+    <taskdef resource="scala/tools/ant/antlib.xml">
+      <classpath>
+        <path refid="project.classpath"/>
+      </classpath>
+    </taskdef>
+
+    <target name="test-build-env">
+        <!-- Just to check on environment variables etc. -->
+    </target>
+
+    <!--
+                  ===================
+                  COMPILATION SECTION
+                  ===================
+    -->
+
+    <!-- Compile the Scala source files first -->
+    <target name="-pre-compile">
+      <mkdir dir="${scala.build.dir}" />
+      <scalac srcdir="${scala.source.dir}" destdir="${scala.build.dir}" 
+      classpathref="project.classpath" unchecked="on" deprecation="on"/>
+    </target>
+
+    <!--
+                  ====================
+                  JAR BUILDING SECTION
+                  ====================
+    -->
+
+    <target 
+    depends="init,compile,-pre-pre-jar,-pre-jar" 
+    if="manifest.available+main.class+mkdist.available"
+    name="-do-jar-with-libraries">
+        <echo>ERROR: </echo>
+        <echo>You are using Netbeans and the following property is set:</echo>
+        <echo>    libs.CopyLibs.classpath</echo>
+        <echo>In one of the following files:</echo>
+        <echo>    nbproject/project.properties</echo>
+        <echo>    ~/.netbeans/6.7/build.properties</echo>
+        <echo>Delete or comment it</echo>
+        <fail message="Conky GUI does not support -do-jar-with-libraries"/>
+    </target>
+
+    <target name="-pre-jar">
+        <mkdir dir="${dist.dir}" />
+    </target>
+
+    <!--
+                  ====================
+                  PACKAGE BUILDING SECTION
+                  ====================
+    -->
+
+    <target depends="clean,test,tar,deb" name="package">
+        <!-- 
+        This task will stay empty as it will only,
+        group the different methods of packaging.
+        See the "depends" argument.
+        -->
+    </target>
+
+    <target depends="-do-clean,jar" name="tar">
+        <property name="username" value="${env.USERNAME}" />
+        <!-- build dir -->
+        <mkdir dir="${tar.package.dir}" />
+        <!-- copy files -->
+        <copy todir="${tar.package.dir}">
+            <fileset dir="${package.src.dir}" excludes="**/*.svn **/DEBIAN/**"/>
+        </copy>
+        <!-- compress man page -->
+        <exec executable='gzip'>
+            <arg value='-9'/>
+            <arg value='${tar.package.tarbz2.dir}/${tar.conkygui.1.file}'/>
+        </exec>
+        <!-- build targz2 -->
+        <tar destfile="${tar.package.file}" compression="bzip2" excludes="**/*.svn">
+            <!-- executables (bash scripts) -->
+            <tarfileset dir="${tar.package.tarbz2.dir}" filemode="755" username="${username}" group="${username}">
+                <include name="${tar.install.script}"/>
+                <include name="${tar.remove.script}"/>
+                <include name="${tar.conkygui.script}"/>
+            </tarfileset>
+            <!-- copy everything else -->
+            <tarfileset dir="${tar.package.tarbz2.dir}" username="${username}" group="${username}">
+                <!-- exclude bash scripts -->
+                <exclude name="${tar.install.script}"/>
+                <exclude name="${tar.remove.script}"/>
+                <exclude name="${tar.conkygui.script}"/>
+            </tarfileset>
+        </tar>
+    </target>
+
+    <target depends="-do-clean,jar" name="deb">
+        <!-- copy control files -->
+        <copy file='${package.src.DEBIAN.dir}/control' todir='${deb.DEBIAN.dir}'/>
+        <!--chmod file="${deb.DEBIAN.dir}/postinst" perm="0755"/-->
+        <!--chmod file="${deb.DEBIAN.dir}/prerm" perm="0755"/-->
+        <!-- copying libs -->
+        <copy todir="${deb.lib.dir}">
+            <fileset dir="${package.src.lib.dir}" excludes='**/*.svn'/>
+        </copy>
+        <!-- copying docs -->
+        <copy todir="${deb.doc.dir}">
+            <fileset dir="${package.src.doc.dir}" excludes='**/*.svn'/>
+        </copy>
+        <!-- changelog -->
+        <exec executable='gzip'>
+            <arg value='-9'/>
+            <arg value='${deb.doc.dir}/changelog'/>
+        </exec>
+        <!-- copying single files -->
+        <!-- man page -->
+        <copy file='${package.src.man.file}' tofile='${deb.man.file}'/>
+        <exec executable='gzip'>
+            <arg value='-9'/>
+            <arg value='${deb.man.file}'/>
+        </exec>
+        <!-- conkygui.desktop -->
+        <copy file='${package.src.dir}/conkygui.desktop' todir='${deb.share.dir}/applications'/>
+        <!-- conkygui.jar -->
+        <copy file="${package.src.dir}/conkygui.jar" todir="${deb.share.dir}/conkygui"/>
+        <!-- icon -->
+        <copy file="${package.src.dir}/conkygui.png" todir="${deb.pixmaps.dir}"/>
+        <!-- conky gui exe -->
+        <copy file="${package.src.dir}/conkygui" todir="${deb.bin.dir}/"/>
+        <chmod file="${deb.bin.dir}/conkygui" perm="0755"/>
+        <!-- build deb for REVU upload -->
+        <!--    exec executable="dpkg-buildpackage" dir="${dist}">
+            <arg value="-S"/>
+            <arg value="-sa"/>
+            <arg value="-rfakeroot"/>
+        </exec-->
+        <!-- build deb -->
+        <exec executable="fakeroot">
+            <arg value="dpkg"/>
+            <arg value="--build"/>
+            <arg value="${deb.dir}"/>
+            <arg value="${deb.package.file}"/>
+        </exec>
+        <echo>Checking deb package with lintian:</echo>
+        <!-- check deb with Lintian -->
+        <exec executable="lintian">
+            <arg value="${deb.package.file}"/>
+        </exec>
+    </target>
+
+    <!--
+                  =========================
+                  JUNIT COMPILATION SECTION
+                  =========================
+    -->
+
+    <target name="-pre-compile-test">
+        <mkdir dir="${scala.test.build.dir}" />
+        <scalac srcdir="${scala.test.source.dir}" destdir="${scala.test.build.dir}" classpathref="project.classpath" />
+    </target>
+
+    <!--
+                  =======================
+                  JUNIT EXECUTION SECTION
+                  =======================
+    -->
+    <target depends="init,compile-test,-pre-test-run" if="have.tests" name="-do-test-run">
+        <junit haltonfailure="yes">
+        <classpath>
+            <path refid="project.classpath"/>
+        </classpath>
+        <formatter type="plain" usefile="no" />
+        <batchtest fork="yes">
+            <fileset dir="${scala.test.build.dir}">
+                <include name="**/*Test*.class" />
+            </fileset>
+        </batchtest>
+        </junit>
+    </target>
+
+    <!--
+                  ===============
+                  CLEANUP SECTION
+                  ===============
+    -->
+
+    <target depends='init' name='-do-clean'>
+        <!-- classes -->
+        <delete dir='${build.dir}'/>
+        <!-- jar -->
+        <delete file='${dist.jar}'/>
+        <!-- javadoc -->
+        <delete dir='${dist.javadoc.dir}'/>
+        <!-- debian -->
+        <delete dir='${deb.dir}'/>
+        <!-- tar -->
+        <delete dir='${tar.package.tarbz2.dir}'/>
+        <!-- packages -->
+        <delete file='${tar.package.file}'/>
+        <delete file='${deb.package.file}'/>
+    </target>
+
+</project>
+

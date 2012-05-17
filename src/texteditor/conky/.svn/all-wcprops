@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svnroot/conkygui/!svn/ver/158/trunk/src/texteditor/conky
+END
+ConkyFileReader.scala
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svnroot/conkygui/!svn/ver/158/trunk/src/texteditor/conky/ConkyFileReader.scala
+END
+WordCompleter.scala
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svnroot/conkygui/!svn/ver/154/trunk/src/texteditor/conky/WordCompleter.scala
+END
+ConkyTextPane.scala
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svnroot/conkygui/!svn/ver/157/trunk/src/texteditor/conky/ConkyTextPane.scala
+END
+ConkyFileWriter.scala
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svnroot/conkygui/!svn/ver/154/trunk/src/texteditor/conky/ConkyFileWriter.scala
+END
+WordCompletionDocListener.scala
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svnroot/conkygui/!svn/ver/154/trunk/src/texteditor/conky/WordCompletionDocListener.scala
+END

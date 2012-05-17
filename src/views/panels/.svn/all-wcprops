@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svnroot/conkygui/!svn/ver/155/trunk/src/views/panels
+END
+PanelGraphics.scala
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svnroot/conkygui/!svn/ver/154/trunk/src/views/panels/PanelGraphics.scala
+END
+PanelColors.scala
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svnroot/conkygui/!svn/ver/154/trunk/src/views/panels/PanelColors.scala
+END
+PanelLua.scala
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svnroot/conkygui/!svn/ver/154/trunk/src/views/panels/PanelLua.scala
+END
+PanelConky.scala
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svnroot/conkygui/!svn/ver/154/trunk/src/views/panels/PanelConky.scala
+END
+PanelText.scala
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svnroot/conkygui/!svn/ver/154/trunk/src/views/panels/PanelText.scala
+END
+PanelShell.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svnroot/conkygui/!svn/ver/153/trunk/src/views/panels/PanelShell.java
+END
+PanelNet.scala
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svnroot/conkygui/!svn/ver/154/trunk/src/views/panels/PanelNet.scala
+END
+PanelWindow.scala
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svnroot/conkygui/!svn/ver/154/trunk/src/views/panels/PanelWindow.scala
+END
+PanelConkyEditor.scala
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svnroot/conkygui/!svn/ver/153/trunk/src/views/panels/PanelConkyEditor.scala
+END
+PanelLayout.scala
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svnroot/conkygui/!svn/ver/153/trunk/src/views/panels/PanelLayout.scala
+END

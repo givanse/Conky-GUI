@@ -1,0 +1,67 @@
+#  Copyrigh 2010 Gast\u00F3n I. Silva E.
+#  This program is distributed under the terms of the GNU General Public License
+#
+#  This file is part of ConkyGUI.
+#
+#  ConkyGUI is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or
+#  (at your option) any later version.
+#
+#  ConkyGUI is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with Conky GUI.  If not, see <http://www.gnu.org/licenses/>.
+
+# status bar resources
+StatusBar.messageTimeout = 5000
+StatusBar.busyAnimationRate = 30
+StatusBar.idleIcon = /images/busyicons/idle-icon.png
+StatusBar.busyIcons[0]  = /images/busyicons/busy-icon0.png
+StatusBar.busyIcons[1]  = /images/busyicons/busy-icon1.png
+StatusBar.busyIcons[2]  = /images/busyicons/busy-icon2.png
+StatusBar.busyIcons[3]  = /images/busyicons/busy-icon3.png
+StatusBar.busyIcons[4]  = /images/busyicons/busy-icon4.png
+StatusBar.busyIcons[5]  = /images/busyicons/busy-icon5.png
+StatusBar.busyIcons[6]  = /images/busyicons/busy-icon6.png
+StatusBar.busyIcons[7]  = /images/busyicons/busy-icon7.png
+StatusBar.busyIcons[8]  = /images/busyicons/busy-icon8.png
+StatusBar.busyIcons[9]  = /images/busyicons/busy-icon9.png
+StatusBar.busyIcons[10] = /images/busyicons/busy-icon10.png
+StatusBar.busyIcons[11] = /images/busyicons/busy-icon11.png
+StatusBar.busyIcons[12] = /images/busyicons/busy-icon12.png
+StatusBar.busyIcons[13] = /images/busyicons/busy-icon13.png
+StatusBar.busyIcons[14] = /images/busyicons/busy-icon14.png
+
+# menu items
+menuItemSave.text=Save
+menuItemSaveAs.text=Save as...
+menuItemRun.text=Refresh
+menuItemStop.text=Stop
+menuItemStop.icon=/images/Stop.png
+menuItemRun.icon=/images/Refresh.png
+menuItemSave.icon=/images/Save.png
+menuEdit.text=Edit
+# open
+menuItemOpen.text=Open File
+menuItemOpen.icon=/images/Document.png
+# help online
+helpOnline.text=Variables
+helpOnline.icon=/images/Help.png
+# about
+about.text=About
+about.icon=/images/star.png
+menuItemNewFile.text=New File
+jMenuItemPreferences.text=Preferences
+jMenuItemPreferences.icon=/images/Preferences.png
+menuItemNewFile.icon=/images/new.png
+menuRun.text=Run
+menuHelp.text=Help
+menuFile.text=File
+exitMenuItem.text=Quit
+exitMenuItem.icon=/images/Symbol-Delete.png
+menuItemQuit.text=Quit
+menuItemQuit.icon=/images/quit.png

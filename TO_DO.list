@@ -1,0 +1,32 @@
+
+Website:
+	specify license on website
+
+Features:
+	write an apport HOOK https://wiki.ubuntu.com/Apport#Per-package%20Apport%20Hooks
+	maybe implement some of this: http://www.cyberciti.biz/tips/spice-up-your-unix-linux-shell-scripts.html
+
+App bugs:
+	undo deletion crashes
+	show line numbers or a way to see when a line ends
+	Open a file and then press "undo adition", will remove the text from the editor, but leave the file open.
+        file chooser doesn't show hidden files???
+	no such file, opens it and displays it as saved, should be red from recent files menu
+	Conky uses relative paths for the images and Conky GUI uses absolute paths
+
+App features:
+	xfontsel send as argument the font that has been selected already
+	improve command line interface
+	ask to save changes on close, if changed
+	menu "insert", insert color for graphs. (color chooser embed in the text editor)
+	switch colors between already selected colors
+	"save as" should point to the working directory
+	ask "confirm" to overwritte file
+	shell window(command output), not a separate window
+	ctrl + f find text in the document
+        ctrl + h replace text in the document
+
+Development:
+	add unit tests for the installer
+	add unit tests for the gui
+

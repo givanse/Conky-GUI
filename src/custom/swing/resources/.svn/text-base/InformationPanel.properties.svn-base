@@ -1,0 +1,8 @@
+#NOI18N
+jPanelWhite.background=255, 255, 255
+jLabel1.text=
+#NOI18N
+jLabel1.icon=/conkygui/resources/images/information.png
+jLabelMessage.text=jLabel2
+#NOI18N
+jLabelMessage.font=Monospaced-Bold-15

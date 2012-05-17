@@ -1,0 +1,35 @@
+#!/bin/bash
+
+set -e
+
+#-----------------------------------#
+#             Functions             #
+#-----------------------------------#
+
+function verify_user_permissions {
+    # check the id of the script
+    if [ $(/usr/bin/id -u) -ne 0 ]
+    then
+        echo 'error: '$0' needs to be run with superuser privileges'
+        exit
+    fi
+}
+
+#-----------------------------------#
+#              REMOVE               #
+#-----------------------------------#
+
+verify_user_permissions
+
+# remove files
+rm -vfr /usr/share/conkygui
+
+# individual files
+rm -vf  /usr/bin/conkygui
+rm -vf  /usr/share/pixmaps/conkygui.png
+rm -vf  /usr/share/applications/conkygui.desktop
+rm -vf  /usr/share/man/man1/conkygui.1.gz
+
+# remove this script
+rm -vf  /usr/bin/conkygui-remove
+
