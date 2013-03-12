@@ -1,0 +1,7 @@
+**.*~
+*.tar.bz2
+*.deb
+dist/src/conkygui.jar
+dist/tarbz2
+dist/debian
+build/
