@@ -25,6 +25,7 @@ import custom.swing.CheckBox
 import javax.swing.JSpinner
 import javax.swing.SpinnerNumberModel
 import util.CLIExecuter
+import java.awt.event.ActionEvent
 
 // It allows you to read the properties file
 private class PanelText {}
@@ -39,7 +40,7 @@ object PanelText extends docking.DockableView("Text") {
     private val checkBoxUppercase = new custom.swing.CheckBox
     private val checkBoxOverrideUTF8 = new custom.swing.CheckBox
     private val checkBoxShortUnits = new custom.swing.CheckBox
-    private val jComboBoxFont = new javax.swing.JComboBox
+    private val jComboBoxFont = new javax.swing.JComboBox[String]
     private val jTextFieldXFTFont = new javax.swing.JTextField
     private val jButtonXFontsel = new javax.swing.JButton
 
@@ -49,46 +50,47 @@ object PanelText extends docking.DockableView("Text") {
  
     private def initComponents {
 
-        setName("Form") // NOI18N
+        setName("Form") 
 
-        val resourceMap =
-            org.jdesktop.application.Application.getInstance(classOf[controllers.ConkyGUI]).getContext.getResourceMap(classOf[PanelText])
+        val resourceMap = org.jdesktop.application.Application.
+            getInstance(classOf[controllers.ConkyGUI]).getContext.
+            getResourceMap(classOf[PanelText])
         
         spinnerPadPercents.setMaximumSize(new java.awt.Dimension(100, 20))
-        spinnerPadPercents.setName("spinnerPadPercents") // NOI18N
+        spinnerPadPercents.setName("spinnerPadPercents") 
 
         spinnerTextBufferSize.setMaximumSize(new java.awt.Dimension(100, 20))
-        spinnerTextBufferSize.setName("spinnerTextBufferSize") // NOI18N
+        spinnerTextBufferSize.setName("spinnerTextBufferSize") 
 
         spinnerMaxUserText.setMaximumSize(new java.awt.Dimension(100, 20))
-        spinnerMaxUserText.setName("spinnerMaxUserText") // NOI18N
+        spinnerMaxUserText.setName("spinnerMaxUserText") 
 
         spinnerXFTAlpha.setEditor(new JSpinner.NumberEditor(spinnerXFTAlpha, "0.000"))
-        spinnerXFTAlpha.setName("spinnerXFTAlpha") // NOI18N
+        spinnerXFTAlpha.setName("spinnerXFTAlpha") 
         
-        checkBoxUseXFT.setText(resourceMap.getString("checkBoxUseXFT.text")) // NOI18N
-        checkBoxUseXFT.setName("checkBoxUseXFT") // NOI18N
+        checkBoxUseXFT.setText(resourceMap.getString("checkBoxUseXFT.text")) 
+        checkBoxUseXFT.setName("checkBoxUseXFT") 
 
-        checkBoxUppercase.setText(resourceMap.getString("checkBoxUppercase.text")) // NOI18N
-        checkBoxUppercase.setName("checkBoxUppercase") // NOI18N
+        checkBoxUppercase.setText(resourceMap.getString("checkBoxUppercase.text")) 
+        checkBoxUppercase.setName("checkBoxUppercase") 
 
-        checkBoxOverrideUTF8.setText(resourceMap.getString("checkBoxOverrideUTF8.text")) // NOI18N
-        checkBoxOverrideUTF8.setName("checkBoxOverrideUTF8") // NOI18N
+        checkBoxOverrideUTF8.setText(resourceMap.getString("checkBoxOverrideUTF8.text")) 
+        checkBoxOverrideUTF8.setName("checkBoxOverrideUTF8") 
 
-        checkBoxShortUnits.setText(resourceMap.getString("checkBoxShortUnits.text")) // NOI18N
-        checkBoxShortUnits.setName("checkBoxShortUnits") // NOI18N
+        checkBoxShortUnits.setText(resourceMap.getString("checkBoxShortUnits.text")) 
+        checkBoxShortUnits.setName("checkBoxShortUnits") 
 
         jComboBoxFont.setEditable(true)
-        jComboBoxFont.setName("jComboBoxFont") // NOI18N
+        jComboBoxFont.setName("jComboBoxFont") 
         jComboBoxFont.setPreferredSize(new java.awt.Dimension(250, 25))
 
-        jTextFieldXFTFont.setText(resourceMap.getString("jTextFieldXFTFont.text")) // NOI18N
-        jTextFieldXFTFont.setName("jTextFieldXFTFont") // NOI18N
+        jTextFieldXFTFont.setText(resourceMap.getString("jTextFieldXFTFont.text")) 
+        jTextFieldXFTFont.setName("jTextFieldXFTFont") 
         jTextFieldXFTFont.setPreferredSize(new java.awt.Dimension(250, 25))
 
-        jButtonXFontsel.setText(resourceMap.getString("jButtonXFontsel.text")) // NOI18N
-        jButtonXFontsel.setToolTipText(resourceMap.getString("jButtonXFontsel.toolTipText")) // NOI18N
-        jButtonXFontsel.setName("jButtonXFontsel") // NOI18N
+        jButtonXFontsel.setText(resourceMap.getString("jButtonXFontsel.text")) 
+        jButtonXFontsel.setToolTipText(resourceMap.getString("jButtonXFontsel.toolTipText")) 
+        jButtonXFontsel.setName("jButtonXFontsel") 
         jButtonXFontsel.addActionListener(new java.awt.event.ActionListener {
             def actionPerformed(evt: java.awt.event.ActionEvent) {
                 jButtonXFontselActionPerformed(evt)
@@ -139,7 +141,7 @@ object PanelText extends docking.DockableView("Text") {
         this.alignLeftTopCorner
     }
 
-    private def jButtonXFontselActionPerformed(evt: java.awt.event.ActionEvent) {
+    private def jButtonXFontselActionPerformed(evt: ActionEvent) {
         this.jTextFieldXFTFont.setText( models.SystemFont.xfontsel )
     }
 
@@ -231,7 +233,7 @@ object PanelText extends docking.DockableView("Text") {
     }
 
     private def loadFonts {
-        val fonts = models.SystemFont.fcList
+        val fonts: Array[String] = models.SystemFont.fcList
         for(index <- List.range(0, fonts.length) ) {
             this.jComboBoxFont.addItem(fonts(index))
         }

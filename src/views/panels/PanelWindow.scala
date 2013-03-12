@@ -30,7 +30,7 @@ private class PanelWindow {}
 
 object PanelWindow extends docking.DockableView("Window") {
 
-    private val comboBoxOwnWindowType = new javax.swing.JComboBox
+    private val comboBoxOwnWindowType = new javax.swing.JComboBox[String]
     private val checkBoxOwnWindow = new custom.swing.CheckBox
     private val checkBoxOwnWindowTransparent = new custom.swing.CheckBox
     private val bcOwnWindowColour = new custom.swing.ColorButton
@@ -48,65 +48,68 @@ object PanelWindow extends docking.DockableView("Window") {
     
     private def initComponents {
 
-        this.setName("Form") // NOI18N
+        this.setName("Form") 
 
-        val resourceMap =
-            org.jdesktop.application.Application.getInstance(classOf[controllers.ConkyGUI]).getContext.getResourceMap(classOf[PanelWindow])
+        val resourceMap = org.jdesktop.application.Application.
+            getInstance(classOf[controllers.ConkyGUI]).getContext.
+            getResourceMap(classOf[PanelWindow])
 
-        textFieldOwnWindowClass.setName("textFieldOwnWindowClass") // NOI18N
+        textFieldOwnWindowClass.setName("textFieldOwnWindowClass") 
         textFieldOwnWindowClass.setPreferredSize(new java.awt.Dimension(200, 25))
 
-        textFieldOwnWindowTitle.setText(resourceMap.getString("textFieldOwnWindowTitle.text")) // NOI18N
-        textFieldOwnWindowTitle.setName("textFieldOwnWindowTitle") // NOI18N
+        textFieldOwnWindowTitle.setText(resourceMap.getString("textFieldOwnWindowTitle.text")) 
+        textFieldOwnWindowTitle.setName("textFieldOwnWindowTitle") 
         textFieldOwnWindowTitle.setPreferredSize(new java.awt.Dimension(200, 25))
 
-        val model: Array[Object] = List("normal", "desktop", "override").toArray
-        comboBoxOwnWindowType.setModel(new javax.swing.DefaultComboBoxModel( model ))
-        comboBoxOwnWindowType.setName("comboBoxOwnWindowType") // NOI18N
+        // TODO: use properties file
+        val model: Array[String] = Array("normal", "desktop", "override")
+        comboBoxOwnWindowType.setModel(
+            new javax.swing.DefaultComboBoxModel[String]( model ))
+        comboBoxOwnWindowType.setName("comboBoxOwnWindowType") 
 
-        checkBoxOwnWindow.setText(resourceMap.getString("checkBoxOwnWindow.text")) // NOI18N
-        checkBoxOwnWindow.setName("checkBoxOwnWindow") // NOI18N
+        checkBoxOwnWindow.setText(resourceMap.getString("checkBoxOwnWindow.text")) 
+        checkBoxOwnWindow.setName("checkBoxOwnWindow") 
 
-        checkBoxOwnWindowTransparent.setText(resourceMap.getString("checkBoxOwnWindowTransparent.text")) // NOI18N
-        checkBoxOwnWindowTransparent.setName("checkBoxOwnWindowTransparent") // NOI18N
+        checkBoxOwnWindowTransparent.setText(resourceMap.getString("checkBoxOwnWindowTransparent.text")) 
+        checkBoxOwnWindowTransparent.setName("checkBoxOwnWindowTransparent") 
 
-        bcOwnWindowColour.setText(resourceMap.getString("labelOwnWindowColour.text")) // NOI18N
-        bcOwnWindowColour.setName("labelOwnWindowColour") // NOI18N
+        bcOwnWindowColour.setText(resourceMap.getString("labelOwnWindowColour.text")) 
+        bcOwnWindowColour.setName("labelOwnWindowColour") 
 
-        jCheckBoxUndecorated.setText(resourceMap.getString("jCheckBoxUndecorated.text")) // NOI18N
-        jCheckBoxUndecorated.setName("jCheckBoxUndecorated") // NOI18N
+        jCheckBoxUndecorated.setText(resourceMap.getString("jCheckBoxUndecorated.text")) 
+        jCheckBoxUndecorated.setName("jCheckBoxUndecorated") 
 
-        jCheckBoxBelow.setText(resourceMap.getString("jCheckBoxBelow.text")) // NOI18N
-        jCheckBoxBelow.setName("jCheckBoxBelow") // NOI18N
+        jCheckBoxBelow.setText(resourceMap.getString("jCheckBoxBelow.text")) 
+        jCheckBoxBelow.setName("jCheckBoxBelow") 
 
-        jCheckBoxAbove.setText(resourceMap.getString("jCheckBoxAbove.text")) // NOI18N
-        jCheckBoxAbove.setName("jCheckBoxAbove") // NOI18N
+        jCheckBoxAbove.setText(resourceMap.getString("jCheckBoxAbove.text")) 
+        jCheckBoxAbove.setName("jCheckBoxAbove") 
 
-        jCheckBoxSticky.setText(resourceMap.getString("jCheckBoxSticky.text")) // NOI18N
-        jCheckBoxSticky.setName("jCheckBoxSticky") // NOI18N
+        jCheckBoxSticky.setText(resourceMap.getString("jCheckBoxSticky.text")) 
+        jCheckBoxSticky.setName("jCheckBoxSticky") 
 
-        jCheckBoxSkipTaskbar.setText(resourceMap.getString("jCheckBoxSkipTaskbar.text")) // NOI18N
-        jCheckBoxSkipTaskbar.setName("jCheckBoxSkipTaskbar") // NOI18N
+        jCheckBoxSkipTaskbar.setText(resourceMap.getString("jCheckBoxSkipTaskbar.text")) 
+        jCheckBoxSkipTaskbar.setName("jCheckBoxSkipTaskbar") 
 
-        jCheckBoxSkipPager.setText(resourceMap.getString("jCheckBoxSkipPager.text")) // NOI18N
-        jCheckBoxSkipPager.setName("jCheckBoxSkipPager") // NOI18N
+        jCheckBoxSkipPager.setText(resourceMap.getString("jCheckBoxSkipPager.text")) 
+        jCheckBoxSkipPager.setName("jCheckBoxSkipPager") 
 
         val lOwnWindowClass = new javax.swing.JLabel
         val lOwnWindowTitle = new javax.swing.JLabel
         val lOwnWindowHints = new javax.swing.JLabel
         val lOwnWindowType = new javax.swing.JLabel
 
-        lOwnWindowClass.setText(resourceMap.getString("lOwnWindowClass.text")) // NOI18N
-        lOwnWindowClass.setName("lOwnWindowClass") // NOI18N
+        lOwnWindowClass.setText(resourceMap.getString("lOwnWindowClass.text")) 
+        lOwnWindowClass.setName("lOwnWindowClass") 
 
-        lOwnWindowTitle.setText(resourceMap.getString("lOwnWindowTitle.text")) // NOI18N
-        lOwnWindowTitle.setName("lOwnWindowTitle") // NOI18N
+        lOwnWindowTitle.setText(resourceMap.getString("lOwnWindowTitle.text")) 
+        lOwnWindowTitle.setName("lOwnWindowTitle") 
 
-        lOwnWindowHints.setText(resourceMap.getString("lOwnWindowHints.text")) // NOI18N
-        lOwnWindowHints.setName("lOwnWindowHints") // NOI18N
+        lOwnWindowHints.setText(resourceMap.getString("lOwnWindowHints.text")) 
+        lOwnWindowHints.setName("lOwnWindowHints") 
 
-        lOwnWindowType.setText(resourceMap.getString("lOwnWindowType.text")) // NOI18N
-        lOwnWindowType.setName("lOwnWindowType") // NOI18N
+        lOwnWindowType.setText(resourceMap.getString("lOwnWindowType.text")) 
+        lOwnWindowType.setName("lOwnWindowType") 
 
         // add all the components
         this.rowEnd( checkBoxOwnWindow )

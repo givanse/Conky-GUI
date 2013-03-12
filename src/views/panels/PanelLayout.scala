@@ -24,6 +24,7 @@ package views.panels
 import javax.swing.SpinnerNumberModel
 import javax.swing.JSpinner
 import javax.swing.JComboBox
+import javax.swing.DefaultComboBoxModel
 import javax.swing.JLabel
 
 // It allows you to read the properties file
@@ -31,7 +32,7 @@ private class PanelLayout {}
 
 object PanelLayout extends docking.DockableView("Layout") {
 
-    private val comboBoxUseSpacer = new JComboBox
+    private val comboBoxUseSpacer = new JComboBox[String]
     private val spinnerMinimumSizeW = new JSpinner(new SpinnerNumberModel(0, 0, 9999, 1))
     private val spinnerGapY = new JSpinner(new SpinnerNumberModel(0, 0, 9999, 1))
     private val spinnerMaximumWidth = new JSpinner(new SpinnerNumberModel(0, 0, 9999, 1))
@@ -39,41 +40,45 @@ object PanelLayout extends docking.DockableView("Layout") {
     private val spinnerBorderWidth = new JSpinner(new SpinnerNumberModel(0, 0, 9999, 1))
     private val spinnerGapX = new JSpinner(new SpinnerNumberModel(0, 0, 9999, 1))
     private val spinnerMinimumSizeH = new JSpinner(new SpinnerNumberModel(0, 0, 9999, 1))
-    private val comboBoxAlignment = new JComboBox
+    private val comboBoxAlignment = new JComboBox[String]
 
     this.initComponents
     this.reset
     
     private def initComponents {
 
-        this.setName("Form") // NOI18N
+        this.setName("Form") 
 
-        val resourceMap =
-            org.jdesktop.application.Application.getInstance(classOf[controllers.ConkyGUI]).getContext.getResourceMap(classOf[PanelLayout])
+        val resourceMap = org.jdesktop.application.Application.
+            getInstance(classOf[controllers.ConkyGUI]).getContext.
+            getResourceMap(classOf[PanelLayout])
 
-        //TODO: hardcoded
-        val model: Array[Object] = List("none", "left", "right").toArray
-        comboBoxUseSpacer.setModel(new javax.swing.DefaultComboBoxModel( model ))
-        comboBoxUseSpacer.setName("comboBoxUseSpacer") // NOI18N
+        //TODO: hardcoded, use properties files
+        val modelUseSpacer: Array[String] = Array("none", "left", "right")
+        comboBoxUseSpacer.setModel(
+            new DefaultComboBoxModel[String](modelUseSpacer))
+        comboBoxUseSpacer.setName("comboBoxUseSpacer") 
 
-        //TODO: hardcoded
-        val modelAlign: Array[Object] = List("top_left", "top_right", "top_middle", "bottom_left", "bottom_right", "bottom_middle", "middle_left", "middle_right", "none").toArray
-        comboBoxAlignment.setModel(new javax.swing.DefaultComboBoxModel( modelAlign ))
-        comboBoxAlignment.setName("comboBoxAlignment") // NOI18N
+        //TODO: hardcoded, use properties files
+        val modelAlign: Array[String] = Array("top_left", "top_right", 
+            "top_middle", "bottom_left", "bottom_right", "bottom_middle", 
+            "middle_left", "middle_right", "none")
+        comboBoxAlignment.setModel(new DefaultComboBoxModel[String](modelAlign))
+        comboBoxAlignment.setName("comboBoxAlignment") 
 
-        spinnerMinimumSizeW.setName("spinnerMinimumSizeW") // NOI18N
+        spinnerMinimumSizeW.setName("spinnerMinimumSizeW") 
 
-        spinnerGapY.setName("spinnerGapY") // NOI18N
+        spinnerGapY.setName("spinnerGapY") 
 
-        spinnerMaximumWidth.setName("spinnerMaximumWidth") // NOI18N
+        spinnerMaximumWidth.setName("spinnerMaximumWidth") 
 
-        spinnerBorderMargin.setName("spinnerBorderMargin") // NOI18N
+        spinnerBorderMargin.setName("spinnerBorderMargin") 
 
-        spinnerBorderWidth.setName("spinnerBorderWidth") // NOI18N
+        spinnerBorderWidth.setName("spinnerBorderWidth") 
 
-        spinnerGapX.setName("spinnerGapX") // NOI18N
+        spinnerGapX.setName("spinnerGapX") 
 
-        spinnerMinimumSizeH.setName("spinnerMinimumSizeH") // NOI18N
+        spinnerMinimumSizeH.setName("spinnerMinimumSizeH") 
 
         val labelGapX = new JLabel(resourceMap.getString("labelGapX.text"))
         val labelGapY = new JLabel(resourceMap.getString("labelGapY.text"))
