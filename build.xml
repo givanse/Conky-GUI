@@ -43,6 +43,9 @@
       <pathelement location="${junit.lib}" />
       <pathelement location="${scala.build.dir}" />
       <pathelement location="${scala.test.build.dir}" />
+      <pathelement location="${file.reference.junit4.jar}" />
+      <pathelement location="${file.reference.hamcrest.jar}" />
+      <pathelement location="${file.reference.scala-library.jar}" />
       <pathelement location="${file.reference.vldocking}" />
       <pathelement location="${file.reference.appframework}" />
     </path>
@@ -54,8 +57,15 @@
       </classpath>
     </taskdef>
 
-    <target name="test-build-env">
-        <!-- Just to check on environment variables etc. -->
+    <!-- Debug project classpath -->
+    <target name="dbg-classpath">
+        <pathconvert 
+             pathsep="${line.separator}            "
+             property="echo.classpath.pretty"
+             refid="project.classpath">
+	</pathconvert>
+    	<echo message="CLASSPATH = ${echo.classpath.pretty}" />
+    	<!--echo message="javac.classpath = ${javac.classpath}" /-->
     </target>
 
     <!--
