@@ -1,4 +1,3 @@
-
 Steps to build Conky GUI from source:
 
     Create the folder where you want to store the source files:
@@ -8,6 +7,7 @@ Steps to build Conky GUI from source:
 
     Get the latest source code version:
 	git remote add origin https://github.com/givanse/conky-gui.git
+	git pull origin master
 
     Install the required libraries:
 	sudo apt-get install openjdk-7-jdk scala libjava-gnome-java
