@@ -1,61 +1,0 @@
-10
-
-dir
-158
-https://conkygui.svn.sourceforge.net/svnroot/conkygui/trunk/src
-https://conkygui.svn.sourceforge.net/svnroot/conkygui
-
-
-
-2012-05-16T12:25:29.115874Z
-158
-gastons
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-fe0d9509-cc07-421e-a4de-5cee9208f713
-
-models
-dir
-
-images
-dir
-
-controllers
-dir
-
-conkygui
-dir
-
-listeners
-dir
-
-custom
-dir
-
-texteditor
-dir
-
-util
-dir
-
-views
-dir
-
-docking
-dir
-
-parsers
-dir
-
