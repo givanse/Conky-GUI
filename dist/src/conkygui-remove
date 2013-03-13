@@ -23,6 +23,7 @@ verify_user_permissions
 
 # remove files
 rm -vfr /usr/share/conkygui
+rm -vfr /usr/share/doc/conkygui
 
 # individual files
 rm -vf  /usr/bin/conkygui
@@ -33,3 +34,6 @@ rm -vf  /usr/share/man/man1/conkygui.1.gz
 # remove this script
 rm -vf  /usr/bin/conkygui-remove
 
+echo 'conkygui has been removed'
+
+exit
