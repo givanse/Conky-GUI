@@ -1,0 +1,10 @@
+
+To install, just:
+  ./INSTALL
+
+To uninstall:
+  sudo /usr/bin/conkygui-remove  
+
+Execute:
+  conkygui
+

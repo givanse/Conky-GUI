@@ -1,0 +1,4 @@
+
+dist/src/DEBIAN/control
+src/controllers/resources/ConkyGUI.properties
+
