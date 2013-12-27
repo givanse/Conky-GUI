@@ -1,26 +1,32 @@
 # Installation instructions
 
- 1. [Package: tar] (install.md#tar.bz2)
+ * [Package : tar] (install.md#tar.bz2)
 
- 2. [Package: deb] (install.md#deb)
+ * [Package : deb] (install.md#deb)
 
-## tar.bz2
+## Package : tar
 
 #### Install
 Download ```conkyguiv#.#.tar.bz2``` and
 
-    tar -jxvf conkyguiv#.#.tar.bz2
+    tar -xjvf conkyguiv#.#.tar.bz2
 
 Then
 
     cd conkyguiv#.#
-    sudo ./install
+    sudo ./INSTALL
 
 #### Remove
 
     conkygui-remove
 
-## deb
+#### Run
+
+    conkygui
+
+Alternatively you can directly execute ```./conkygui``` without installing Conky GUI.
+
+## Package : deb
 
 #### Install
 
@@ -31,3 +37,7 @@ Download ```conkyguiv#.#.deb``` and
 #### Remove
 
     sudo apt-get remove conky-gui
+
+#### Run
+
+    conkygui
