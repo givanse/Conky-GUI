@@ -6,12 +6,20 @@ set -e
 #             Functions             #
 #-----------------------------------#
 
-function copy_variables_file {
-    # Copying variables.xml to ~/.conkygui
-    if [ ! -d ~/.conkygui ]; then
-	    mkdir -v ~/.conkygui
-    fi
-    cp -vu /usr/share/doc/conkygui/variables.xml ~/.conkygui
+# Copy variables.xml to ~/.conkygui                                              
+function copy_variables_file {                                                   
+                                                                                 
+    conkygui_config_dir=~/.conkygui                                              
+    if [ ! -d $conkygui_config_dir ]; then                                       
+        mkdir -v $conkygui_config_dir                                            
+    fi                                                                           
+                                                                                 
+    variables_xml_path='/usr/share/doc/conkygui/variables.xml'                   
+    if [ ! -f $variables_xml_path ]; then                                        
+        # Conky GUI is not installed, try to copy the file from the local copy.
+        variables_xml_path='doc/variables.xml'                                   
+    fi                                                                           
+    cp -vu $variables_xml_path $conkygui_config_dir                              
 }
 
 function get_scala_home {
@@ -60,16 +68,22 @@ function get_scala_library_path {
 
 function get_classpath {
     SCALA_HOME=$1
+
     # Except for Scala the required libraries come
     # with Conky GUI and are located in the "lib" folder.
     lib_folder='/usr/share/conkygui'
+
     bsaf=$lib_folder'/lib/bsaf-1.9-RC3.jar'
     vldocking=$lib_folder'/lib/vldocking-3.0.0.jar'
     conkygui=$lib_folder'/conkygui.jar'
-    libs=$bsaf':'$vldocking':'$conkygui
     scala_library=`get_scala_library_path $SCALA_HOME`
-    classpath=$libs':'$scala_library
-    echo $classpath
+
+    classpath=$bsaf':'$vldocking':'$conkygui':'$scala_library
+
+    # Used to launch Conky GUI without installing it.
+    local_classpath='conkygui.jar:lib/*'
+
+    echo $classpath':'$local_classpath
 }
 
 #-------------------------------#
