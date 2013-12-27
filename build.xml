@@ -32,6 +32,7 @@
     <!-- Import files -->
     <import file="nbproject/build-impl.xml"/>
 
+    <!-- List and display current environment variables -->
     <echo message="ANT_HOME = ${ant.home}" />
     <echo message="JAVA_HOME = ${java.home}" />
     <echo message="SCALA_HOME = ${scala.home}" />
@@ -132,7 +133,9 @@
             <arg value='-9'/>
             <arg value='${tar.package.tarbz2.dir}/${tar.conkygui.1.file}'/>
         </exec>
-        <!-- build targz2 -->
+
+        <echo><!-- line break --></echo>
+        <echo>Build tar.bz2 package </echo>
         <tar destfile="${tar.package.file}" compression="bzip2" excludes="**/*.svn">
             <!-- executables (bash scripts) -->
             <tarfileset dir="${tar.package.tarbz2.dir}" filemode="755" username="${username}" group="${username}">
@@ -190,15 +193,18 @@
             <arg value="-sa"/>
             <arg value="-rfakeroot"/>
         </exec-->
-        <!-- build deb -->
+
+        <echo><!-- line break --></echo>
+        <echo>Build deb package</echo>
         <exec executable="fakeroot">
             <arg value="dpkg"/>
             <arg value="--build"/>
             <arg value="${deb.dir}"/>
             <arg value="${deb.package.file}"/>
         </exec>
+
+        <echo><!-- line break --></echo>
         <echo>Checking deb package with lintian:</echo>
-        <!-- check deb with Lintian -->
         <exec executable="lintian">
             <arg value="${deb.package.file}"/>
         </exec>

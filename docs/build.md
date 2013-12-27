@@ -1,50 +1,40 @@
-Steps to build Conky GUI from source:
+# Steps to build Conky GUI:
 
-    Create the folder where you want to store the source files:
-    	mkdir conkygui
-	cd conkygui
-	git init
+## Get the source code:
 
-    Get the latest source code version:
-	git remote add origin https://github.com/givanse/conky-gui.git
-	git pull origin master
+    git clone git@github.com:givanse/Conky-GUI.git
 
-    Install the required libraries:
+## Install all the dependencies:
+
+Development and libraries
 	sudo apt-get install openjdk-7-jdk scala libjava-gnome-java
+Testing
+    sudo apt-get install junit4
+Packaging (deb file)
+    sudo apt-get install fakeroot lintian
 
-    Set environment variables (SCALA_HOME, JUNIT_HOME)
-	If Java and Scala were installed through apt-get in Ubuntu, do this:
-            cd /usr/share/java
-            sudo ln -s . lib
+## Compile
+### Set environment variables: 
+    The project will look for JAVA_HOME.
 
-        In the file conkygui/nbproject/project.properties
-        adjust, if necessary, the follwoing properties:
-            scala.home
-            junit.home
+#### Ubuntu 12.04.3
+After installing Java and Scala through apt-get:
+    sudo ln -s /usr/share/java/ /usr/share/java/lib
+    export JAVA_HOME='/usr/'
+    ant compile
 
-    Within the 'conkygui' folder:
-        ant compile
-            Just compile.
-        ant test
-	    Compile and run the unit tests.
-	    Follow the "install JUnit" instructions.
-        ant run
-	    Compile and run.
-        ant package
-	    Build distributable files (.deb and .tar.gz files)
-	    You'll need: sudo apt-get install fakeroot lintian
-        ant dbg-classpath
-            Print the project classpath.
-	    It will print all the files/JARs available. 
+A succesful compilation will return:
+    BUILD SUCCESSFUL
+    Total time: 16 seconds
 
- Install JUnit
-    Site: junit.org
+## Build package
+ant tar get a .tar.bz2 package
+ant deb get a .deb package
 
-    Download
-        wget http://search.maven.org/remotecontent?filepath=junit/junit/4.11/junit-4.11.jar
-        wget http://search.maven.org/remotecontent?filepath=org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar
+## Project tasks
+ant dbg-classpath review that all the required libraries are included
+ant test run all the unit tests
+ant run execute the project
+ant clean remove every file that is not part of the repo
+ant package build distributable package files
 
-    Update with names of the files that you have downloaded:
-    vim conkygui/nbproject/project.properties 
-        file.reference.junit4.jar
-        file.reference.hamcrest.jar
