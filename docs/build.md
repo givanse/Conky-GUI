@@ -4,17 +4,9 @@
 
     git clone git@github.com:givanse/Conky-GUI.git
 
-## Install all the dependencies
+## Install tools and dependencies
 
-Development and libraries
-
-    sudo apt-get install openjdk-7-jdk scala libjava-gnome-java
-Testing
-
-    sudo apt-get install junit4
-Packaging (deb file)
-
-    sudo apt-get install fakeroot lintian
+    sudo apt-get install openjdk-7-jdk scala libjava-gnome-java junit4 ant fakeroot lintian
     
 #### Set JAVA_HOME
 ##### Ubuntu 12.04.3
