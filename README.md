@@ -5,6 +5,7 @@ Conky GUI eases the customization of Conky configuration files.
 
 #####Docs
 
- * [Build instructions] (docs/build.md)
- * [Install instructions] (docs/install.md)
+ * [Build] (docs/build.md)
+ * [Contribute] (docs/contribute.md)
+ * [Install] (docs/install.md)
 
