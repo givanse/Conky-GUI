@@ -1,5 +1,9 @@
 # Installation instructions
 
+ 1. [Package: tar] (install.md#tar.bz2)
+
+ 2. [Package: deb] (install.md#deb)
+
 ## tar.bz2
 
 #### Install
