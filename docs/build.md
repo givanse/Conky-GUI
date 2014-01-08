@@ -8,18 +8,15 @@
 
 ### Ubuntu
 
+    #!/bin/bash
 
-#### Install tools and dependencies
-
+    # Install tools and dependencies
     sudo apt-get install openjdk-7-jdk scala libjava-gnome-java junit4 ant fakeroot lintian
     
-##### Variables
-###### SCALA_HOME
-
+    # SCALA_HOME
     sudo ln -s /usr/share/java/ /usr/share/java/lib
 
-###### JAVA_HOME
-
+    # JAVA_HOME
     javac_path=`readlink -f /usr/bin/javac`
     export JAVA_HOME=${javac_path%/bin/javac} 
 
@@ -33,8 +30,8 @@ A succesful compilation will return:
     Total time: 16 seconds
 
 ## Build distributable packages
- * ```ant tar``` get a .tar.bz2 package
- * ```ant deb``` get a .deb package
+ * ```ant tar``` builds a .tar.bz2 package
+ * ```ant deb``` builds a .deb package
 
 ## Other project tasks
  * ```ant dbg-classpath``` review that all the required libraries are included
