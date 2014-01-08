@@ -4,16 +4,24 @@
 
     git clone git@github.com:givanse/Conky-GUI.git
 
-## Install tools and dependencies
+## Set up the environment
+
+### Ubuntu
+
+
+#### Install tools and dependencies
 
     sudo apt-get install openjdk-7-jdk scala libjava-gnome-java junit4 ant fakeroot lintian
     
-#### Set JAVA_HOME
-##### Ubuntu 12.04.3
-After installing Java and Scala through apt-get
+##### Variables
+###### SCALA_HOME
 
     sudo ln -s /usr/share/java/ /usr/share/java/lib
-    export JAVA_HOME='/usr/'
+
+###### JAVA_HOME
+
+    javac_path=`readlink -f /usr/bin/javac`
+    export JAVA_HOME=${javac_path%/bin/javac} 
 
 ## Compile
 
@@ -24,11 +32,11 @@ A succesful compilation will return:
     BUILD SUCCESSFUL
     Total time: 16 seconds
 
-## Build package
+## Build distributable packages
  * ```ant tar``` get a .tar.bz2 package
  * ```ant deb``` get a .deb package
 
-## Project tasks
+## Other project tasks
  * ```ant dbg-classpath``` review that all the required libraries are included
  * ```ant test``` run all the unit tests
  * ```ant run``` execute the project
