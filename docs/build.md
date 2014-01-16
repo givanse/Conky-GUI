@@ -1,10 +1,17 @@
 # Steps to build Conky GUI
 
-## Get the source code
+Follow this four steps:
+   1. [Get the source code](build.md#1-get-the-source-code)
+   2. [Set up the environment](build.md#2-set-up-the-environment)
+      * [Ubuntu](build.md#ubuntu)
+   3. [Compile](build.md#3-compile)
+   4. [Build distributable packages](4-build-distributable-packages)
+
+## 1. Get the source code
 
     git clone git@github.com:givanse/Conky-GUI.git
 
-## Set up the environment
+## 2. Set up the environment
 
 ### Ubuntu
 
@@ -20,7 +27,7 @@
     javac_path=`readlink -f /usr/bin/javac`
     export JAVA_HOME=${javac_path%/bin/javac} 
 
-## Compile
+## 3. Compile
 
     ant compile
     
@@ -29,7 +36,7 @@ A succesful compilation will return:
     BUILD SUCCESSFUL
     Total time: 16 seconds
 
-## Build distributable packages
+## 4. Build distributable packages
  * ```ant tar``` builds a .tar.bz2 package
  * ```ant deb``` builds a .deb package
 
