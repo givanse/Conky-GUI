@@ -72,7 +72,6 @@ extends custom.swing.GridBagDialog(parent) with About {
   val resourceMap = context.getResourceMap(classOf[About])
 
   this.init
-  this.pack
 
   /**
    * PRIVATE METHODS
@@ -82,8 +81,9 @@ extends custom.swing.GridBagDialog(parent) with About {
     this.setLocationRelativeTo( this.parent )
     this.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE)
     this.setTitle(resourceMap.getString("title"))
-    //this.setModal(true)
+    this.setPreferredSize(new java.awt.Dimension(500, 250))
     this.setResizable(false)
+    //this.setModal(true)
     // turn off bsaf xml save state feature
     // http://kenai.com/projects/bsaf/forums/open-discussion/topics/2845-How-to-Disable-the-Session-State-Feature-
     // val ps: org.jdesktop.application.session.PropertySupport = null
@@ -125,7 +125,7 @@ extends custom.swing.GridBagDialog(parent) with About {
     imageLabel.setIcon(resourceMap.getIcon("imageLabel.icon"))
     imageLabel.setName("imageLabel")
 
-    val buttonsDimension = new java.awt.Dimension(70, 25)
+    val buttonsDimension = new java.awt.Dimension(100, 25)
 
     val buttonCredits = new javax.swing.JButton
     buttonCredits.setPreferredSize( buttonsDimension )
