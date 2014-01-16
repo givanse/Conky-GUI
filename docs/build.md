@@ -15,18 +15,20 @@ Follow this four steps:
 
 ### Ubuntu
 
-    #!/bin/bash
+```bash
+#!/bin/bash
 
-    # Install tools and dependencies
-    sudo apt-get install openjdk-7-jdk scala libjava-gnome-java junit4 ant fakeroot lintian
+# Install tools and dependencies
+sudo apt-get install openjdk-7-jdk scala libjava-gnome-java junit4 ant fakeroot lintian
     
-    # Add a fake lib/ folder.
-    # It is required because Scala and JUnit were installed through APT.
-    sudo ln -s /usr/share/java/ /usr/share/java/lib
+# Add a fake lib/ folder.
+# It is required because Scala and JUnit were installed through APT.
+sudo ln -s /usr/share/java/ /usr/share/java/lib
 
-    # JAVA_HOME
-    javac_path=`readlink -f /usr/bin/javac`
-    export JAVA_HOME=${javac_path%/bin/javac} 
+# JAVA_HOME
+javac_path=`readlink -f /usr/bin/javac`
+export JAVA_HOME=${javac_path%/bin/javac} 
+```
 
 ## 3. Compile
 
