@@ -1,6 +1,6 @@
 # Installation instructions
 
-Download your prefered package from [Sourceforge](http://sourceforge.net/projects/conkygui/files/) and follow instructions accordingly.
+Download your prefered package from [Sourceforge](http://sourceforge.net/projects/conkygui/files/) and then follow the instructions below according to your package.
 
 
  * [Package : tar] (install.md#tar.bz2)
