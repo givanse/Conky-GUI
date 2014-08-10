@@ -1,10 +1,63 @@
 #!/bin/bash
 
+# To edit this scripts, its easier to:
+#   ant tar
+#   extract the tar and work there
+#   when done, copy the modified scripts here
+# Its easier because you can execute and test the scripts inside the
+# the compiled project.
+
 set -e
 
-#-----------------------------------#
-#             Functions             #
-#-----------------------------------#
+# >>> env-scala.sh
+# Find or guess where SCALA_HOME is
+function export_scala_home {
+    # check if $SCALA_HOME is set
+    if [ -z $SCALA_HOME ]; then
+        echo 'using a default SCALA_HOME'
+
+        # try to find it at common locations
+        paths=("/usr/share/scala" "/usr/share/java")
+        for indx in 0 1
+	    do
+	        SCALA_HOME=${paths[$indx]}
+	        if [ -d $SCALA_HOME ]; then
+                export SCALA_HOME=${paths[$indx]}
+	            break
+	        fi
+	        SCALA_HOME=''
+	    done
+    else
+        echo 'SCALA_HOME already set'
+    fi
+
+    echo 'SCALA_HOME: '$SCALA_HOME
+    echo ''
+}
+
+# Find or guess where SCALA_LIB is
+function export_scala_lib {
+
+    SCALA_LIB=$SCALA_HOME
+
+    scala_library=$SCALA_LIB'/scala-library.jar'
+    if [ -f $scala_library ] ; then
+        export SCALA_LIB=$SCALA_HOME
+    else
+        SCALA_LIB=$SCALA_HOME'/lib'
+
+        scala_library=$SCALA_LIB'/scala-library.jar'
+        if [ -f $scala_library ] ; then
+            export SCALA_LIB=$SCALA_HOME'/lib'
+        else
+            echo 'error: scala-library.jar could not be found';
+        fi
+    fi
+
+    echo 'SCALA_LIB: '$SCALA_LIB
+    echo ''
+}
+# <<< env-scala.sh
 
 # Copy variables.xml to ~/.conkygui                                              
 function copy_variables_file {                                                   
@@ -22,84 +75,37 @@ function copy_variables_file {
     cp -vu $variables_xml_path $conkygui_config_dir                              
 }
 
-function get_scala_home {
-    # check if $SCALA_HOME is set
-    if [ -z $SCALA_HOME ]; then
-        # try to find it at common locations
-        dists=('Fedora' 'Ubuntu')
-        paths=('/usr/share/scala' '/usr/share/java')
-        for indx in 0 1
-	    do
-	        SCALA_HOME=${paths[$indx]}	
-	        if [ -d $SCALA_HOME ]; then
-	            break
-	        fi
-	        SCALA_HOME=''
-	    done
-    fi
-
-    # check if $SCALA_HOME could be found
-    if [ -z $SCALA_HOME ]; then
-        echo '$SCALA_HOME is not set'
-        exit 2
-    else
-        echo $SCALA_HOME
-        return 0
-    fi
-}
-
-function get_scala_library_path {
-    SCALA_HOME=$1
-    scala_library=$SCALA_HOME'/scala-library.jar'
-    if [ -f $scala_library ] ; then
-        echo $scala_library
-        return 0
-    fi
-    # try with lib folder
-    scala_library=$SCALA_HOME'/lib/scala-library.jar'
-    if [ -f $scala_library ] ; then
-        echo $scala_library
-        return 0
-    else
-        echo 'error: scala-library.jar could not be found';
-        exit 1
-    fi
-}
-
-function get_classpath {
-    SCALA_HOME=$1
-
-    # Except for Scala the required libraries come
-    # with Conky GUI and are located in the "lib" folder.
-    lib_folder='/usr/share/conkygui'
-
-    bsaf=$lib_folder'/lib/bsaf-1.9-RC3.jar'
-    vldocking=$lib_folder'/lib/vldocking-3.0.0.jar'
-    conkygui=$lib_folder'/conkygui.jar'
-    scala_library=`get_scala_library_path $SCALA_HOME`
-
-    classpath=$bsaf':'$vldocking':'$conkygui':'$scala_library
-
-    # Used to launch Conky GUI without installing it.
-    local_classpath='conkygui.jar:lib/*'
-
-    echo $classpath':'$local_classpath
-}
-
 #-------------------------------#
 #              RUN              #
 #-------------------------------#
 
 copy_variables_file
 
-SCALA_HOME=`get_scala_home`
-echo 'SCALA_HOME: '$SCALA_HOME
+export_scala_home
+
+export_scala_lib
+
+scala_library=$SCALA_LIB'/scala-library.jar'
+#scala_xml=`readlink $SCALA_LIB/scala-xml.jar || true`
+#scala_pc=`readlink $SCALA_LIB/scala-parser-combinators.jar || true`
+scala_xml=$SCALA_LIB/scala-xml.jar
+scala_pc=$SCALA_LIB/scala-parser-combinators.jar
     
-classpath=`get_classpath $SCALA_HOME`
+# Except for Scala, the required libraries come
+# with Conky GUI and are located in the "lib" folder.
+lib_folder='/usr/share/conkygui'
+bsaf=$lib_folder'/lib/bsaf-1.9-RC3.jar'
+vldocking=$lib_folder'/lib/vldocking-3.0.0.jar'
+conkygui=$lib_folder'/conkygui.jar'
+
+java -version
+echo ''
+
+classpath=$bsaf':'$vldocking':'$conkygui':'$scala_library':'$scala_xml':'$scala_pc
 echo 'CLASSPATH:  '$classpath
 
 # start Conky GUI
 java -cp $classpath controllers.ConkyGUI
 
-exit $?
-
+exit
+#EOF

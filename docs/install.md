@@ -10,21 +10,12 @@
 Download ```conkyguiv#.#.tar.bz2``` and
 
     tar -xjvf conkyguiv#.#.tar.bz2
-
-Then
-
     cd conkyguiv#.#
     sudo ./INSTALL
 
 #### Remove
 
     conkygui-remove
-
-#### Run
-
-    conkygui
-
-Alternatively you can directly execute ```./conkygui``` without installing Conky GUI.
 
 ## Package : deb
 
@@ -38,6 +29,6 @@ Download ```conkyguiv#.#.deb``` and
 
     sudo apt-get remove conky-gui
 
-#### Run
+## Run
 
     conkygui

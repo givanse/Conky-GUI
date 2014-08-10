@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
- *  Copyrigh 2012 Gastón Silva
+ *  Copyrigh 2014 Gastón I. Silva E.
  *  This program is distributed under the terms of the GNU General Public License
  *
  *  This file is part of ConkyGUI.
@@ -22,51 +22,86 @@
  
 <project name="conkygui" default="default" basedir=".">
 
-    <description>Compile, test, package and runs Conky GUI</description>
+    <description>Compile, test, package and run Conky GUI</description>
  
-    <!-- Application properties -->
-    <property file="src/controllers/resources/ConkyGUI.properties"/>
-    <!-- Add properties file -->
-    <property file="nbproject/project.properties"/>
+    <!-- Set environment variables -->
+    <property environment="env" />
 
-    <!-- Import files -->
-    <import file="nbproject/build-impl.xml"/>
+    <!-- SCALA_HOME -->
+    <condition property="scala.home" value="${env.SCALA_HOME}">
+      <isset property="env.SCALA_HOME" />
+    </condition>
+
+    <condition property="scala.home" value="/usr/share/java">
+      <not>
+        <isset property="env.SCALA_HOME" />
+      </not>
+    </condition>
+
+    <!-- JUNIT_HOME -->
+    <condition property="junit.home" value="${env.JUNIT_HOME}">
+      <isset property="env.JUNIT_HOME" />
+    </condition>
+
+    <condition property="junit.home" value="/usr/share/java">
+      <not>
+        <isset property="env.JUNIT_HOME" />
+      </not>
+    </condition>
 
     <!-- List and display current environment variables -->
-    <echo message="ANT_HOME = ${ant.home}" />
-    <echo message="JAVA_HOME = ${java.home}" />
+    <echo message="java.home = ${java.home}" />
     <echo message="SCALA_HOME = ${scala.home}" />
     <echo message="JUNIT_HOME = ${junit.home}" />
 
+    <!-- Add properties -->
+    <property file="src/controllers/resources/ConkyGUI.properties"/>
+    <property file="nbproject/project.properties"/>
+    <!-- Import Netbeans project build file -->
+    <import file="nbproject/build-impl.xml"/>
+
+    <!-- paths -->
+    <path id="scalac.classpath">
+      <pathelement location="${file.reference.scala-compiler.jar}" />
+      <pathelement location="${file.reference.scala-library.jar}" />
+      <pathelement location="${file.reference.scala-reflect.jar}" />
+      <pathelement location="${file.reference.scala-parser.jar}" />
+      <pathelement location="${file.reference.scala-xml.jar}" />
+    </path>
+
     <path id="project.classpath">
-      <pathelement location="${scala.compiler}" />
-      <pathelement location="${scala.lib}" />
+      <path refid="scalac.classpath"/>
       <pathelement location="${junit.lib}" />
       <pathelement location="${scala.build.dir}" />
       <pathelement location="${scala.test.build.dir}" />
       <pathelement location="${file.reference.junit4.jar}" />
       <pathelement location="${file.reference.hamcrest.jar}" />
-      <pathelement location="${file.reference.scala-library.jar}" />
       <pathelement location="${file.reference.vldocking}" />
       <pathelement location="${file.reference.appframework}" />
     </path>
 
-    <!-- /usr/share/java/scala-compiler.jar/scala/tools/ant/antlib.xml -->
+    <!-- 
+     Creates the ant task 'scalac' that is used during compilation.
+     Extracts the task from the compiler JAR, full path:
+       $SCALA_HOME/scala-compiler.jar/scala/tools/ant/antlib.xml
+    -->
     <taskdef resource="scala/tools/ant/antlib.xml">
       <classpath>
-        <path refid="project.classpath"/>
+        <path refid="scalac.classpath"/>
       </classpath>
     </taskdef>
 
     <!-- Debug project classpath -->
     <target name="dbg-classpath">
-        <pathconvert 
-             pathsep="${line.separator}            "
-             property="echo.classpath.pretty"
-             refid="project.classpath">
-	</pathconvert>
-    	<echo message="CLASSPATH = ${echo.classpath.pretty}" />
-    	<!--echo message="javac.classpath = ${javac.classpath}" /-->
+      <pathconvert 
+        pathsep="${line.separator}            "
+        property="echo.classpath.pretty"
+        refid="project.classpath">
+      </pathconvert>
+
+      <echo message="CLASSPATH = ${echo.classpath.pretty}" />
+      <echo message="javac.target = ${javac.target}" />
+      <echo message="javac.classpath = ${javac.classpath}" />
     </target>
 
     <!--

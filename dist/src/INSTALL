@@ -66,6 +66,15 @@ function greet {
 
 verify_user_permissions
 
+source ./env-scala.sh
+export_scala_home
+export_scala_lib
+# Add symbolic links to the scala libraries
+# In this way we don't have to hard code version numbers in 
+# nbproject/project.properties
+ln -svf $SCALA_LIB/scala-xml_* $SCALA_LIB'/scala-xml.jar'
+ln -svf $SCALA_LIB/scala-parser-combinators_* $SCALA_LIB'/scala-parser-combinators.jar'
+
 remove_previous_version
 
 make_required_directories
