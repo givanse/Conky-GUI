@@ -13,27 +13,38 @@ Follow this four steps:
 
 ## 2. Set up the environment
 
-### Ubuntu
+Dependencies:
+ * Java JDK
+ * Scala compiler 
+ * Junit4
 
+If building a DEB:
+ * fakeroot
+ * lintian
+
+Set JAVA_HOME and put it in the path. Then, set SCALA_HOME:
 ```bash
-#!/bin/bash
+# SCALA_HOME
+export SCALA_HOME=path-to-scala-folder
+ln -s $SCALA_HOME/lib/scala-xml* $SCALA_HOME/lib/scala-xml.jar
+ln -s $SCALA_HOME/lib/scala-parser-combinators* $SCALA_HOME/lib/scala-parser-combinators.jar
+```
 
+### Ubuntu
+```bash
 # Install tools and dependencies
 sudo apt-get install openjdk-7-jdk scala libjava-gnome-java junit4 ant fakeroot lintian
-    
+
 # Add a fake lib/ folder.
 # It is required because Scala and JUnit were installed through APT.
 sudo ln -s /usr/share/java/ /usr/share/java/lib
-
-# JAVA_HOME
-javac_path=`readlink -f /usr/bin/javac`
-export JAVA_HOME=${javac_path%/bin/javac} 
 ```
 
 ## 3. Compile
 
     ant compile
-    
+
+If errors are returned, (the wiki)[https://github.com/givanse/Conky-GUI/wiki] might be of help.    
 A succesful compilation will return:
 
     BUILD SUCCESSFUL
