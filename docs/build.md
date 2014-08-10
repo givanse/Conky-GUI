@@ -1,21 +1,36 @@
 # Steps to build Conky GUI
 
-## Get the source code
+Follow this four steps:
+   1. [Get the source code](build.md#1-get-the-source-code)
+   2. [Set up the environment](build.md#2-set-up-the-environment)
+      * [Ubuntu](build.md#ubuntu)
+   3. [Compile](build.md#3-compile)
+   4. [Build distributable packages](4-build-distributable-packages)
+
+## 1. Get the source code
 
     git clone git@github.com:givanse/Conky-GUI.git
 
-## Install tools and dependencies
+## 2. Set up the environment
 
-    sudo apt-get install openjdk-7-jdk scala libjava-gnome-java junit4 ant fakeroot lintian
+### Ubuntu
+
+```bash
+#!/bin/bash
+
+# Install tools and dependencies
+sudo apt-get install openjdk-7-jdk scala libjava-gnome-java junit4 ant fakeroot lintian
     
-#### Set JAVA_HOME
-##### Ubuntu 12.04.3
-After installing Java and Scala through apt-get
+# Add a fake lib/ folder.
+# It is required because Scala and JUnit were installed through APT.
+sudo ln -s /usr/share/java/ /usr/share/java/lib
 
-    sudo ln -s /usr/share/java/ /usr/share/java/lib
-    export JAVA_HOME='/usr/'
+# JAVA_HOME
+javac_path=`readlink -f /usr/bin/javac`
+export JAVA_HOME=${javac_path%/bin/javac} 
+```
 
-## Compile
+## 3. Compile
 
     ant compile
     
@@ -24,11 +39,11 @@ A succesful compilation will return:
     BUILD SUCCESSFUL
     Total time: 16 seconds
 
-## Build package
- * ```ant tar``` get a .tar.bz2 package
- * ```ant deb``` get a .deb package
+## 4. Build distributable packages
+ * ```ant tar``` builds a .tar.bz2 package
+ * ```ant deb``` builds a .deb package
 
-## Project tasks
+## Other project tasks
  * ```ant dbg-classpath``` review that all the required libraries are included
  * ```ant test``` run all the unit tests
  * ```ant run``` execute the project
