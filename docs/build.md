@@ -22,7 +22,7 @@ If building a DEB:
  * fakeroot
  * lintian
 
-Set JAVA_HOME and put it in the path. Then, set SCALA_HOME:
+Set JAVA_HOME and put it in the path, then set SCALA_HOME:
 ```bash
 # SCALA_HOME
 export SCALA_HOME=path-to-scala-folder
@@ -44,7 +44,7 @@ sudo ln -s /usr/share/java/ /usr/share/java/lib
 
     ant compile
 
-If errors are returned, (the wiki)[https://github.com/givanse/Conky-GUI/wiki] might be of help.    
+If errors are returned, [the wiki](https://github.com/givanse/Conky-GUI/wiki) might be of help.    
 A succesful compilation will return:
 
     BUILD SUCCESSFUL
