@@ -5,7 +5,7 @@ Installed-Size: 860
 Maintainer: Gastón I. Silva Echegaray <gastons@users.sourceforge.net>
 Architecture: all
 Version: 1.3.2
-Depends: openjdk-6-jre | sun-java6-jre, scala-library
+Depends: openjdk-7-jre | sun-java7-jre, scala-library
 Recommends: conky-all | conky-cli | conky-std 
 Homepage: http://conkygui.sourceforge.net/
 Description: Conky GUI eases the customization of Conky configuration files. 
